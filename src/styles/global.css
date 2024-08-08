@@ -1,0 +1,81 @@
+/* 
+  Globale Stile für wiederkehrende Elemente wie Header, Logo etc. 
+  Detailseiten haben eigene CSS-Dateien für spezifische Elemente.
+*/
+
+/* Schriftarten importieren */
+@font-face {
+  font-family: "CyberFont";
+  src: url("https://cdn.glitch.global/373a89c7-55ea-4386-8afe-3a6112a39fc4/Dune_Rise.ttf?v=1710342980690");
+}
+
+/* Root-Variablen für konsistente und einfache Anpassungen */
+:root {
+  --fs-sm: clamp(0.8rem, 0.42vi + 0.69rem, 1.03rem);
+  --fs-base: clamp(1rem, 0.68vi + 0.83rem, 1.38rem);
+  --fs-md: clamp(1.25rem, 1.06vi + 0.99rem, 1.83rem);
+  --fs-lg: clamp(1.56rem, 1.6vi + 1.16rem, 2.44rem);
+  --fs-xl: clamp(1.95rem, 2.37vi + 1.36rem, 3.26rem);
+  --fs-xxl: clamp(2.44rem, 3.45vi + 1.58rem, 4.34rem);
+  --fs-xxxl: clamp(3.05rem, 4.97vi + 1.81rem, 5.79rem);
+
+  --primary-color: rgb(0, 0, 0);
+  --secondary-color: white;
+  --background-color: #e0e8ea;
+  --accent-color: #34ba32;
+  --font-h1: "CyberFont", sans-serif;
+  --font-p: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;
+  --padding: 1rem;
+  --max-text-width: 65ch;
+}
+
+/* Globale Textstile */
+h1 {
+  font-family: var(--font-h1);
+  color: var(--primary-color);
+  font-size: var(--fs-lg);
+}
+
+h2 {
+  font-family: var(--font-p);
+  color: var(--primary-color);
+  font-size: var(--fs-lg);
+}
+
+p {
+  color: var(--primary-color);
+  font-family: var(--font-p);
+  max-width: var(--max-text-width);
+  margin: auto;
+  font-size: var(--fs-md);
+  padding: var(--padding);
+  line-height: 1.5;
+}
+
+/* Body-Stile */
+body {
+  margin: 0;
+  font-size: var(--fs-base);
+  background: var(--background-color);
+  background-image: repeating-linear-gradient(45deg,
+      transparent,
+      transparent 40px,
+      var(--accent-color) 42px,
+      var(--accent-color) 42px);
+}
+
+/* Media Queries für Responsive Design */
+@media screen and (max-width: 768px) {
+  a p {
+    font-size: var(--fs-base);
+    margin: 5px 0 0 10px;
+  }
+
+  main section {
+    flex-direction: column;
+  }
+
+  main p {
+    margin: 2rem;
+  }
+}

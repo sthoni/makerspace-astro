@@ -1,0 +1,71 @@
+---
+import { Image } from "astro:assets";
+import logo from "../assets/logo.png";
+
+const title = "MakerSpace";
+---
+
+<header>
+    <div>
+        <a href="/"><Image loading="eager" src={logo} alt="Steinbart-Logo" /></a
+        >
+        <h1>{title}</h1>
+    </div>
+    <nav>
+        <a class="animation" href="/index.html">Home</a>
+        <a class="animation" href="/news.html">Neuigkeiten</a>
+        <a class="animation" href="/ueberuns.html">Über uns</a>
+    </nav>
+</header>
+
+<style>
+    /* Header-Stile */
+    header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: var(--background-color);
+        box-shadow: 0px 0px 10px 0px #000000;
+        padding: var(--padding);
+        gap: 2rem;
+        border-bottom: 10px solid var(--accent-color);
+
+        img {
+            aspect-ratio: 1 / 1;
+            width: auto;
+            max-height: 5rem;
+        }
+    }
+
+    header > div {
+        display: flex;
+        gap: 2rem;
+    }
+
+    /* Navigation */
+    nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+
+        a {
+            text-decoration: none;
+            font-family: var(--font-p);
+            color: var(--primary-color);
+            font-size: var(--fs-md);
+            transition: transform 0.2s ease-in-out;
+
+            &:hover {
+                transform: translate(0.25rem, 0);
+            }
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        nav {
+            flex-direction: column;
+            width: 100%;
+        }
+    }
+</style>
