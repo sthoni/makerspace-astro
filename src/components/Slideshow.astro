@@ -1,232 +1,62 @@
 ---
-// Code von W3 Schools mit veränderungen https://www.w3schools.com/howto/howto_js_slideshow.asp
-
-let slideIndex = 1; //Variable von der jetzigen slide
-let slideTimeout;
-document.addEventListener("DOMContentLoaded", () => {
-    showSlides(slideIndex); //Erste slide wird geöffnet
-});
-
-//Diese Funktion zeigt die slide die im Parameter ist
-function showSlides(n) {
-    let slides = document.getElementsByClassName("mySlides"); //Slides werden gefunden um sie später zu deaktivieren
-    let dots = document.getElementsByClassName("dot"); // Punkte werden gefunden um sie umzuschalten
-
-    // Versteckt alle Slides. Wenn das nicht passiert werden alle drei bilder auf der Slideshow angezeigt
-    for (let i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-    }
-
-    // Macht, dass die Slide nach dem letzten Slide bei 1 anfängt
-    if (n > slides.length) {
-        slideIndex = 1;
-    }
-    if (n < 1) {
-        slideIndex = slides.length;
-    }
-
-    // Sorgt dafür dass die punkte nicht grau werden damit einer später die richtige SLide anzeigt. Deaktiviert Active
-    for (let i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" active", "");
-    }
-
-    // Zeige den aktuellen Slide an und setze die "active" Klasse für den entsprechenden Punkt
-    slides[slideIndex - 1].style.display = "block"; // Zeigt Bild
-    dots[slideIndex - 1].className += " active"; //Zeigt
-
-    // Automatisches umschalten der Slides mit 6 sekunden Timeout
-    slideTimeout = setTimeout(function () {
-        //Setzt Timeout
-        plusSlides(1); // Ändert das Bild
-    }, 6000);
-}
-
-// Nächste Slide nach vorne mit Parameter der Bei den Pfeilen eingesetzt wird bei HTML oben
-function plusSlides(n) {
-    clearTimeout(slideTimeout); //Entfernt das schon angefangene Delay wenn man auf einen Pfeil drückt damit nicht direkt danach sich die slide ändert
-    showSlides((slideIndex += n)); //Zeigt Slide
-}
-
-// Vorherige Slide nach hinten mit Parameter der Bei den Pfeilen eingesetzt wird bei HTML oben
-function currentSlide(n) {
-    clearTimeout(slideTimeout); //Entfernt das schon angefangene Delay wenn man auf einen Pfeil drückt damit nicht direkt danach sich die slide ändert
-    showSlides((slideIndex = n)); //Zeigt Slide
-}
+import { Image } from "astro:assets";
+import loetkolben from "../assets/loetkolben.jpg";
 ---
 
-<div>Das ist eine Slideshow</div>
+<ul class="list">
+  <li class="item">
+    <div class="content">
+      <Image loading="eager" src={loetkolben} alt="Steinbart-Logo" />
+    </div>
+  </li>
+  <li class="item">
+    <div class="content">
+      <Image loading="eager" src={loetkolben} alt="Steinbart-Logo" />
+    </div>
+  </li>
+  <li class="item">
+    <div class="content">
+      <Image loading="eager" src={loetkolben} alt="Steinbart-Logo" />
+    </div>
+  </li>
+</ul>
 
 <style>
-    /* Bilder bei Slideshow*/
-    img {
-        vertical-align: middle; /* Zentriert Vertikal */
-        width: 100%; /* Maximale Breite von der Slideshow*/
-        height: 100%; /* Maximale höhe*/
-    }
+  img {
+    height: 100%;
+    width: var(--max-text-width);
+    object-fit: cover;
+  }
 
-    /* Container für Bild und Pfile etc. (Nicht weiße umrandung und ändert sich nach jedem Bildwechsel)*/
-    .slideshow-container {
-        height: 600px; /* Feste Höhe für den Slideshow-Container */
-        width: 100%; /* Bild nimmt gesamte Breite von der Slideshow ein*/
-        position: relative;
-        display: flex;
-        margin-top: 20px; /* Macht dass die Bilder nicht ganz oben sind*/
-        justify-content: center; /* Zentriert horizontal*/
-        align-items: center; /* Zentriert Vertikal*/
-    }
+  .list {
+    box-shadow: var(--shadow-3);
+    display: flex;
+    gap: 1rem;
+    margin-block: 4rem;
+    background-color: var(--surface-1);
+    width: var(--max-text-width);
+    margin-inline: auto;
+    padding-inline: 0;
+    max-width: 100%;
+    border-radius: var(--radius-conditional-2);
+    list-style: none;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+  }
 
-    #slideshowContainerAussenWeiß {
-        width: 80%; /* Slideshow nimmt*/
-        height: 600px; /* Höhe des Rahmens */
-        background-color: white;
-        margin: 2rem auto;
-        border-radius: 20px; /* Rundet Slideshow ab*/
-        overflow: hidden; /* Macht dass Textfelld hinter der slideshow ist und nicht rauskommt*/
-        box-shadow: 0px 0px 10px 0px #000000; /* Schatten */
+  .item {
+    flex-shrink: 0;
+    max-inline-size: 100vw;
+    max-block-size: var(--max-text-width);
+    aspect-ratio: var(--ratio-widescreen);
 
-        /* Zentriert Elemente*/
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+    background-color: #fff;
 
-    /* Pfeile */
-    .prev,
-    .next {
-        cursor: pointer; /* Ändert Mauszeiger zu pointer*/
+    scroll-snap-align: center;
+  }
 
-        position: absolute;
-        top: 50%; /* Zentriert Vertikal*/
-        padding: 16px; /* Innenabstand */
-        color: green;
-        font-weight: bold; /* Macht Pfeile dicker*/
-        font-size: var(--fs-lg); /* Schriftgröße*/
-        border-radius: 3px; /* Abrunden*/
-
-        /* Animation*/
-        transition: 0.6s ease;
-    }
-
-    /* Positioniert den Rechten Pfeil nach Rechts */
-    .next {
-        right: 0;
-    }
-
-    /* Positioniert den linken Pfeil nach links */
-    .prev {
-        left: 0;
-    }
-
-    /* Ändert die Hintergrundfarbe von den Pfeilen Bei Hover */
-    .prev:hover,
-    .next:hover {
-        background-color: rgba(0, 0, 0, 0.8);
-    }
-
-    /* Text unten*/
-    .textSlideshow {
-        color: #f2f2f2;
-        font-size: var(--fs-base);
-        padding: 32px 32px; /* Innenabstand*/
-        position: absolute;
-        bottom: 0; /* Positioniert ganz unten*/
-
-        /* Zentriert*/
-        left: 50%;
-        width: 100%;
-        transform: translateX(-50%);
-
-        text-align: center; /*Zentriert text*/
-        background-color: rgba(
-            0,
-            0,
-            0,
-            0.7
-        ); /* Schwarz mit bisschen Durchsichtig*/
-        font-family: Arial;
-    }
-
-    /* Number text (1/3 zum Beispiel) */
-    .numbertext {
-        color: #f2f2f2;
-        font-size: var(--fs-md);
-        padding: 8px 12px;
-        position: absolute; /* Macht das der Text in der Slideshow bleibt*/
-        width: 80px;
-        top: 0; /* Postioniert ganz oben*/
-        font-family: Arial;
-    }
-
-    /* Punkte unter der SLideshow */
-    .dot {
-        cursor: pointer; /* Ändert Mauszeiger*/
-        height: 15px;
-        width: 15px;
-        margin: 2px;
-        background-color: #bbb;
-        border-radius: 50%; /* Rundet zu kreis*/
-        display: inline-block; /* Inline Block*/
-        transition: background-color 0.6s ease; /* Animation */
-    }
-
-    /* Eltern Div von den Punkten*/
-    .dotDivSlideShow {
-        text-align: center; /* Zentriert*/
-        margin-top: 10px; /* Macht abstand oben*/
-    }
-
-    /* Farbe wenn es Aktiv ist*/
-    .active,
-    .dot:hover {
-        background-color: #717171;
-    }
-
-    /* Slide bild animation */
-    .fade {
-        animation-name: fade;
-        animation-duration: 1.5s;
-    }
-
-    /* Die Animation ändert die Durchsichtigkeit */
-    @keyframes fade {
-        from {
-            opacity: 0.4;
-        }
-        to {
-            opacity: 1;
-        }
-    }
-
-    /* Änderungen für das Aussehen beim Handy */
-    @media only screen and (max-width: 745px) {
-        #slideshowContainerAussenWeiß {
-            width: 80%; /* Slideshow nimmt*/
-            height: auto; /* Ändere die Höhe auf automatisch, damit sie sich dem Inhalt anpasst */
-            background-color: white;
-            margin: auto;
-            margin-top: 150px; /* Oben abstand */
-            border-radius: 20px; /* Rundet Slideshow ab*/
-            overflow: hidden; /* Macht dass Textfeld hinter der Slideshow ist und nicht rauskommt*/
-            box-shadow: 0px 0px 33px 0px #000000; /* Schatten */
-
-            /* Zentriert Elemente */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .slideshow-container {
-            display: flex; /* Verwende Flexbox-Layout */
-            flex-direction: row; /* Zeige die Slides horizontal an */
-            overflow-x: auto; /* Füge eine horizontale Scrollleiste hinzu, falls erforderlich */
-            -webkit-overflow-scrolling: touch; /* Aktiviere flüssiges Scrollen für Webkit-basierte Browser */
-            max-height: 300px; /* Setze eine maximale Höhe für die Slideshow */
-        }
-
-        .mySlides {
-            flex: 0 0 auto; /* Verhindere, dass die Slides vertikal gestreckt werden */
-            width: 100%; /* Jede Slide nimmt die gesamte Breite des Bildschirms ein */
-            margin-right: 10px; /* Füge etwas Abstand zwischen den Slides hinzu */
-        }
-    }
+  .content {
+    display: flex;
+    height: 100%;
+  }
 </style>

@@ -19,49 +19,186 @@
   --fs-xxl: clamp(2.44rem, 3.45vi + 1.58rem, 4.34rem);
   --fs-xxxl: clamp(3.05rem, 4.97vi + 1.81rem, 5.79rem);
 
-  --primary-color: rgb(0, 0, 0);
-  --secondary-color: white;
-  --background-color: #e0e8ea;
-  --accent-color: #34ba32;
+  --brand-light: var(--green-9);
+  --accent-light: var(--indigo-12);
+
+  --text-1-light: var(--gray-8);
+  --text-2-light: var(--gray-7);
+  --text-3-light: var(--gray-1);
+
+  --surface-1-light: var(--gray-0);
+  --surface-2-light: var(--gray-1);
+  --surface-3-light: var(--gray-2);
+  --surface-4-light: var(--gray-3);
+
+  --brand: var(--brand-light);
+  --accent: var(--accent-light);
+
+  --text-1: var(--text-1-light);
+  --text-2: var(--text-2-light);
+  --text-3: var(--text-3-light);
+
+  --surface-1: var(--surface-1-light);
+  --surface-2: var(--surface-2-light);
+  --surface-3: var(--surface-3-light);
+  --surface-4: var(--surface-4-light);
+
+  --gap: var(--size-7);
+
   --font-h1: "CyberFont", sans-serif;
-  --font-p: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;
-  --padding: 1rem;
-  --max-text-width: 65ch;
+  --font-p: var(--font-classical-humanist);
+  --padding: var(--size-3);
+  --max-text-width: var(--size-content-3);
+}
+
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/*
+  2. Remove default margin
+*/
+* {
+  margin: 0;
+}
+
+/*
+  Typographic tweaks!
+  3. Add accessible line-height
+  4. Improve text rendering
+*/
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/*
+  5. Improve media defaults
+*/
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/*
+  6. Remove built-in form typography styles
+*/
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/*
+  7. Avoid text overflows
+*/
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/*
+  8. Create a root stacking context
+*/
+#root,
+#__next {
+  isolation: isolate;
 }
 
 /* Globale Textstile */
 h1 {
   font-family: var(--font-h1);
-  color: var(--primary-color);
-  font-size: var(--fs-lg);
+  color: var(--brand);
+  font-size: var(--font-size-fluid-2);
 }
 
 h2 {
   font-family: var(--font-p);
-  color: var(--primary-color);
+  color: var(--brand);
   font-size: var(--fs-lg);
 }
 
 p {
-  color: var(--primary-color);
+  color: var(--text-1);
   font-family: var(--font-p);
   max-width: var(--max-text-width);
-  margin: auto;
-  font-size: var(--fs-md);
-  padding: var(--padding);
-  line-height: 1.5;
+  font-size: var(--font-size-fluid-1);
+  line-height: var(--font-lineheight-3);
 }
 
 /* Body-Stile */
 body {
   margin: 0;
-  font-size: var(--fs-base);
-  background: var(--background-color);
-  background-image: repeating-linear-gradient(45deg,
-      transparent,
-      transparent 40px,
-      var(--accent-color) 42px,
-      var(--accent-color) 42px);
+  font-size: var(--font-size-fluid-1);
+  background: var(--surface-1);
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 39px,
+    var(--brand) 40px,
+    var(--brand) 41px
+  );
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.button {
+  display: block;
+  background-color: var(--green-1);
+  padding-block: 1rem;
+  padding-inline: 2rem;
+  border: var(--border-size-1) solid var(--brand);
+  border-radius: 8px;
+  transition: background-color 0.2s ease, color 0.1s ease-in;
+  /* Animationsart z.B ease in*/
+  font-family: var(--font-p);
+  color: var(--text-1);
+
+  &:hover {
+    background-color: var(--green-4);
+    color: var(--text-1);
+  }
+}
+
+.bg-accent {
+  background-color: var(--brand) !important;
+  color: var(--text-3);
+}
+
+.button.bg-accent {
+  &:hover {
+    background-color: var(--green-4) !important;
+    color: var(--text-1) !important;
+  }
+}
+
+.flex {
+  display: flex !important;
+}
+
+a {
+  color: var(--accent);
+  &:hover {
+    color: var(--green-12);
+  }
 }
 
 /* Media Queries für Responsive Design */
@@ -73,9 +210,5 @@ body {
 
   main section {
     flex-direction: column;
-  }
-
-  main p {
-    margin: 2rem;
   }
 }

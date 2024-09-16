@@ -1,108 +1,112 @@
 ---
+import Slideshow from "../components/Slideshow.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
+import loetkolben from "../assets/loetkolben.jpg";
 ---
 
 <BaseLayout>
-	<main>
-		<section>
-			<p>
-				Willkommen beim Makerspace am Steinbart-Gymnasium! Unser Ziel
-				ist es, eine kreative Umgebung für Schülerinnen und Schüler zu
-				schaffen, in der sie ihre technischen Fähigkeiten entwickeln und
-				Projekte entwickeln können.
-			</p>
-			<div>
-				<a href="/Neuigkeiten">Neuigkeiten</a>
-				<a href="/ueberuns">Über uns</a>
-			</div>
-		</section>
-		<section>
-			<h2>Was ist ein MakerSpace?</h2>
-			<p class="textInfo">
-				Ein Makerspace ist ein Ort wo Leute zusammenkommen um Kreative
-				Ideen umzusetzen die mit Technik in verbindung stehen. Oft gibt
-				es Geräte, wie zum Beispiel 3D-Drucker, oder Lötkolben, die von
-				Mehreren Leuten benutzt werden, da viele sowas nicht selbst
-				haben. Makerspaces sind nicht nur da um etwas zu entwickeln,
-				sondern auch um sich mit anderen Leuten auszutauschen,
-				zusammenzuarbeiten und zu lernen.
-			</p>
-		</section>
-	</main>
+  <main>
+    <Slideshow />
+    <section>
+      <p>
+        Willkommen beim Makerspace am Steinbart-Gymnasium! Unser Ziel ist es,
+        eine kreative Umgebung für Schülerinnen und Schüler zu schaffen, in der
+        sie ihre technischen Fähigkeiten entwickeln und Projekte entwickeln
+        können.
+      </p>
+      <div class="flex">
+        <a class="button bg-accent" href="/Neuigkeiten">Neuigkeiten</a>
+        <a class="button" href="/ueberuns">Über uns</a>
+      </div>
+    </section>
+    <section>
+      <h2>Was ist ein MakerSpace?</h2>
+      <Image loading="eager" src={loetkolben} alt="Steinbart-Logo" />
+      <p class="textInfo">
+        Ein Makerspace ist ein Ort wo Leute zusammenkommen um Kreative Ideen
+        umzusetzen die mit Technik in verbindung stehen. Oft gibt es Geräte, wie
+        zum Beispiel 3D-Drucker, oder Lötkolben, die von Mehreren Leuten benutzt
+        werden, da viele sowas nicht selbst haben. Makerspaces sind nicht nur da
+        um etwas zu entwickeln, sondern auch um sich mit anderen Leuten
+        auszutauschen, zusammenzuarbeiten und zu lernen.
+      </p>
+    </section>
+    <section>
+      <h2>Möglichkeiten im Makerspace</h2>
+      <Image loading="eager" src={loetkolben} alt="Steinbart-Logo" />
+      <p class="textInfo">
+        Im Makerspace gibt es viele Werkzeuge um etwas Neues zu entwickeln. Es
+        stehen Lötkolben, PCs, ein Green Screen, Lego Mindestorms, Arduinos mit
+        vielen Sensoren und ein 3D-Drucker zur verfügung. Ihr werdet nicht nur
+        Wekkzeuge bekommen sondern auch hilfe von anderen Schülern und Lehrern
+      </p>
+      <p class="textInfo">
+        Außerdem wird der <a href="https://www.youtube.com/@steinbartpodcast">Steinbart Podcast</a> im Makerspace gedreht.
+      </p>
+    </section>
+    <section>
+      <h2>AG MakerSpace</h2>
+      <Image loading="eager" src={loetkolben} alt="Steinbart-Logo" />
+      <p class="textInfo">
+        Die AG MakerSpace findet jeden Freitag um 13:40 Uhr in den Computerräumen im Neubau (Raum 241) statt. Die AG wird geleitet von Herr Roshow, Herr Heupp und Herr Thon. Ihr könnt frei an euren eigenen Projekten mit den Werkzeugen vom Makerspace arbeiten, oder anderen helfen oder lernen. 
+      </p>
+    </section>
+  </main>
 </BaseLayout>
 
 <style>
-	main > p {
-		background-color: var(--secondary-color);
-		border-radius: 8px;
-		padding: 1rem;
-		margin-block: 4rem;
-		box-shadow: 0px 0px 5px 0px #000000;
-	}
+  main section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    margin-block: 4rem;
+    margin-inline: auto;
+    padding: 2rem;
+    max-width: var(--max-text-width);
+    box-shadow: var(--shadow-1);
+    border-radius: var(--radius-conditional-2);
+  }
 
-	main section {
-		display: flex;
-		justify-content: center;
-		gap: 2rem;
-		margin-block: 4rem;
-		padding-inline: 2rem;
-	}
+  main section:nth-child(2n + 1) {
+    background-color: var(--brand);
+    p {
+      color: var(--text-3);
+    }
+    h2 {
+      color: var(--text-3);
+    }
+  }
 
-	main section:nth-child(2n + 1) {
-		background-color: var(--accent-color);
-		p {
-			color: var(--primary-color);
-		}
-	}
+  main section:nth-child(2n) {
+    background-color: var(--surface-1);
+    p {
+      color: var(--text-1);
+    }
+  }
 
-	main section:nth-child(2n) {
-		background-color: var(--accent-color);
-		p {
-			color: var(--secondary-color);
-		}
-	}
+  article > p {
+    padding-inline: 0;
+  }
 
-	article > p {
-		padding-inline: 0;
-	}
+  img {
+    max-height: 300px;
+    object-fit: cover;
+  }
 
-	article img {
-		aspect-ratio: 16 / 9;
-		object-fit: cover;
-	}
+  main article {
+    background-color: var(--secondary-color);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-block: 2rem;
+    box-shadow: 0px 0px 5px 0px #000000;
+  }
 
-	main article {
-		background-color: var(--secondary-color);
-		border-radius: 8px;
-		padding: 1rem;
-		margin-block: 2rem;
-		box-shadow: 0px 0px 5px 0px #000000;
-	}
-
-	main section a {
-		display: block;
-		background-color: var(--secondary-color);
-		padding-block: 1rem;
-		padding-inline: 2rem;
-		border-radius: 8px;
-		transition:
-			background-color 0.2s ease,
-			color 0.1s ease-in;
-		/* Animationsart z.B ease in*/
-		box-shadow: 0px 0px 5px 0px #000000;
-		font-family: var(--font-p);
-		color: var(--primary-color);
-		font-size: var(--fs-lg);
-
-		&:hover {
-			background-color: var(--primary-color);
-			color: var(--secondary-color);
-		}
-	}
-
-	main section div {
-		display: flex;
-		flex-direction: column;
-		justify-content: space-around;
-	}
+  main section div {
+    display: flex;
+    justify-content: space-around;
+    margin-block: 2rem;
+    gap: 2rem;
+  }
 </style>
