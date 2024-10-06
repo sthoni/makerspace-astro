@@ -1,16 +1,74 @@
 ---
+import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
+
+interface Props {
+  imagePath?: string;
+  altText?: string;
+  headingText?: string;
+}
+
+const { imagePath, altText, headingText } = Astro.props;
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/*.{jpeg,jpg,png,gif}"
+);
+if (imagePath) {
+  if (!images[imagePath])
+    throw new Error(
+      `"${imagePath}" does not exist in glob: "src/assets/*.{jpeg,jpg,png,gif}"`
+    );
+}
 ---
 
 <section>
-    <h2>Was ist ein MakerSpace?</h2>
-    <Image loading="eager" src={loetkolben} alt="Steinbart-Logo" />
-    <p class="textInfo">
-      Ein Makerspace ist ein Ort wo Leute zusammenkommen um Kreative Ideen
-      umzusetzen die mit Technik in verbindung stehen. Oft gibt es Geräte, wie
-      zum Beispiel 3D-Drucker, oder Lötkolben, die von Mehreren Leuten benutzt
-      werden, da viele sowas nicht selbst haben. Makerspaces sind nicht nur da
-      um etwas zu entwickeln, sondern auch um sich mit anderen Leuten
-      auszutauschen, zusammenzuarbeiten und zu lernen.
-    </p>
-  </section>
+  {headingText && <h2>{headingText}</h2>}
+
+  {
+    imagePath && altText ? (
+      <Image loading="eager" src={images[imagePath]()} alt={altText} />
+    ) : (
+      ""
+    )
+  }
+  <p class="textInfo">
+    <slot />
+  </p>
+</section>
+
+<style>
+  section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    margin-block: 4rem;
+    margin-inline: auto;
+    padding: 2rem;
+    max-width: var(--max-text-width);
+    box-shadow: var(--shadow-1);
+    border-radius: var(--radius-conditional-2);
+    border: var(--border-size-1) solid var(--brand);
+  }
+
+  img {
+    max-height: 300px;
+    object-fit: cover;
+  }
+
+  section:nth-child(2n + 1) {
+    background-color: var(--brand);
+    p {
+      color: var(--text-3);
+    }
+    h2 {
+      color: var(--text-3);
+    }
+  }
+
+  section:nth-child(2n) {
+    background-color: var(--surface-1);
+    p {
+      color: var(--text-1);
+    }
+  }
+</style>

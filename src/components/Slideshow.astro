@@ -1,22 +1,28 @@
 ---
 import { Image } from "astro:assets";
 import loetkolben from "../assets/loetkolben.jpg";
+import printer from "../assets/3dprinter.jpg";
+import pcs from "../assets/pcs.jpg";
 ---
 
 <ul class="list">
   <li class="item">
     <div class="content">
-      <Image loading="eager" src={loetkolben} alt="Steinbart-Logo" />
+      <Image
+        loading="eager"
+        src={loetkolben}
+        alt="Bild einer Lötkolbenstation"
+      />
     </div>
   </li>
   <li class="item">
     <div class="content">
-      <Image loading="eager" src={loetkolben} alt="Steinbart-Logo" />
+      <Image loading="eager" src={printer} alt="Bild eines 3D-Druckers" />
     </div>
   </li>
   <li class="item">
     <div class="content">
-      <Image loading="eager" src={loetkolben} alt="Steinbart-Logo" />
+      <Image loading="eager" src={pcs} alt="Bild von Computern" />
     </div>
   </li>
 </ul>

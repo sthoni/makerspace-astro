@@ -1,29 +1,30 @@
 ---
 import Slideshow from "../components/Slideshow.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { Image } from "astro:assets";
-import loetkolben from "../assets/loetkolben.jpg";
+import Card from "../components/Card.astro";
 ---
 
 <BaseLayout>
   <main>
     <Slideshow />
-    <section>
+    <Card>
       <p>
         Willkommen beim Makerspace am Steinbart-Gymnasium! Unser Ziel ist es,
         eine kreative Umgebung für Schülerinnen und Schüler zu schaffen, in der
         sie ihre technischen Fähigkeiten entwickeln und Projekte entwickeln
         können.
       </p>
-      <div class="flex">
+      <div class="button-card">
         <a class="button bg-accent" href="/Neuigkeiten">Neuigkeiten</a>
         <a class="button" href="/ueberuns">Über uns</a>
       </div>
-    </section>
-    <section>
-      <h2>Was ist ein MakerSpace?</h2>
-      <Image loading="eager" src={loetkolben} alt="Steinbart-Logo" />
-      <p class="textInfo">
+    </Card>
+    <Card
+      imagePath="/src/assets/3dprinter.jpg"
+      altText="Bild eines 3D-Druckers"
+      headingText="Was ist ein MakerSpace?"
+    >
+      <p>
         Ein Makerspace ist ein Ort wo Leute zusammenkommen um Kreative Ideen
         umzusetzen die mit Technik in verbindung stehen. Oft gibt es Geräte, wie
         zum Beispiel 3D-Drucker, oder Lötkolben, die von Mehreren Leuten benutzt
@@ -31,25 +32,29 @@ import loetkolben from "../assets/loetkolben.jpg";
         um etwas zu entwickeln, sondern auch um sich mit anderen Leuten
         auszutauschen, zusammenzuarbeiten und zu lernen.
       </p>
-    </section>
-    <section>
-      <h2>Möglichkeiten im Makerspace</h2>
-      <Image loading="eager" src={loetkolben} alt="Steinbart-Logo" />
-      <p class="textInfo">
+    </Card>
+    <Card
+      imagePath="/src/assets/loetkolben.jpg"
+      altText="Bild einer Lötkolbenstation"
+      headingText="Möglichkeiten im Makerspace"
+    >
+      <p>
         Im Makerspace gibt es viele Werkzeuge um etwas Neues zu entwickeln. Es
         stehen Lötkolben, PCs, ein Green Screen, Lego Mindestorms, Arduinos mit
         vielen Sensoren und ein 3D-Drucker zur verfügung. Ihr werdet nicht nur
         Wekkzeuge bekommen sondern auch hilfe von anderen Schülern und Lehrern
       </p>
-      <p class="textInfo">
+      <p>
         Außerdem wird der <a href="https://www.youtube.com/@steinbartpodcast"
           >Steinbart Podcast</a
         > im Makerspace gedreht.
       </p>
-    </section>
-    <section>
-      <h2>AG MakerSpace</h2>
-      <Image loading="eager" src={loetkolben} alt="Steinbart-Logo" />
+    </Card>
+    <Card
+      imagePath="/src/assets/pcs.jpg"
+      altText="Bild von PCs"
+      headingText="AG MakerSpace"
+    >
       <p class="textInfo">
         Die AG MakerSpace findet jeden Freitag um 13:40 Uhr in den
         Computerräumen im Neubau (Raum 241) statt. Die AG wird geleitet von Herr
@@ -57,63 +62,18 @@ import loetkolben from "../assets/loetkolben.jpg";
         Projekten mit den Werkzeugen vom Makerspace arbeiten, oder anderen
         helfen oder lernen.
       </p>
-    </section>
+    </Card>
   </main>
 </BaseLayout>
 
 <style>
-  main section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 2rem;
-    margin-block: 4rem;
-    margin-inline: auto;
-    padding: 2rem;
-    max-width: var(--max-text-width);
-    box-shadow: var(--shadow-1);
-    border-radius: var(--radius-conditional-2);
-    border: var(--border-size-1) solid var(--brand);
-  }
-
-  main section:nth-child(2n + 1) {
-    background-color: var(--brand);
-    p {
-      color: var(--text-3);
-    }
-    h2 {
-      color: var(--text-3);
-    }
-  }
-
-  main section:nth-child(2n) {
-    background-color: var(--surface-1);
-    p {
-      color: var(--text-1);
-    }
-  }
-
   article > p {
     padding-inline: 0;
   }
 
-  img {
-    max-height: 300px;
-    object-fit: cover;
-  }
-
-  main article {
-    background-color: var(--secondary-color);
-    border-radius: 8px;
-    padding: 1rem;
-    margin-block: 2rem;
-    box-shadow: 0px 0px 5px 0px #000000;
-  }
-
-  main section div {
+  .button-card {
     display: flex;
     justify-content: space-around;
-    margin-block: 2rem;
     gap: 2rem;
   }
 </style>

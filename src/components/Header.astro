@@ -53,7 +53,12 @@ const title = "MakerSpace";
       font-family: var(--font-p);
       color: var(--text-1);
       font-size: var(--font-size-fluid-1);
-      animation: var(--animation-bounce) forwards;
+      animation: var(--animation-bounce) reverse;
+      animation:
+        var(--animation-scale-down) reverse,
+        var(--animation-fade-out) reverse;
+      animation-timing-function: var(--ease-squish-5);
+      animation-duration: 1s;
     }
   }
 </style>
