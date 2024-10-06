@@ -60,3 +60,16 @@ import loetkolben from "../assets/loetkolben.jpg";
     height: 100%;
   }
 </style>
+
+<script>
+  const images = document.querySelector(".list");
+  let image_number = 0;
+  setInterval(() => {
+    if (image_number < 2) {
+      image_number += 1;
+    } else {
+      image_number = 0;
+    }
+    images?.scroll({ left: image_number * 700, behavior: "smooth" });
+  }, 5000);
+</script>
