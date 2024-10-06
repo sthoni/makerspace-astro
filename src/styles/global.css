@@ -46,7 +46,7 @@
   --gap: var(--size-7);
 
   --font-h1: "CyberFont", sans-serif;
-  --font-p: var(--font-classical-humanist);
+  --font-p: var(--font-geometric-humanist);
   --padding: var(--size-3);
   --max-text-width: var(--size-content-3);
 }
@@ -146,13 +146,11 @@ body {
   margin: 0;
   font-size: var(--font-size-fluid-1);
   background: var(--surface-1);
-  background-image: repeating-linear-gradient(
-    45deg,
-    transparent,
-    transparent 39px,
-    var(--brand) 40px,
-    var(--brand) 41px
-  );
+  background-image: repeating-linear-gradient(45deg,
+      transparent,
+      transparent 40px,
+      var(--brand) 40px,
+      var(--brand) 41px);
 }
 
 img {
@@ -196,6 +194,7 @@ img {
 
 a {
   color: var(--accent);
+
   &:hover {
     color: var(--green-12);
   }
