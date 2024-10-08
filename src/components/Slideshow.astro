@@ -35,16 +35,13 @@ import pcs from "../assets/pcs.jpg";
   }
 
   .list {
-    box-shadow: var(--shadow-3);
     display: flex;
     gap: 1rem;
-    margin-block: 4rem;
     background-color: var(--surface-1);
     width: var(--max-text-width);
     margin-inline: auto;
     padding-inline: 0;
     max-width: 100%;
-    border-radius: var(--radius-conditional-2);
     list-style: none;
     overflow-x: scroll;
     scroll-snap-type: x mandatory;
@@ -52,12 +49,10 @@ import pcs from "../assets/pcs.jpg";
 
   .item {
     flex-shrink: 0;
-    max-inline-size: 100vw;
+    inline-size: calc(var(--max-text-width) - 5rem);
     max-block-size: var(--max-text-width);
     aspect-ratio: var(--ratio-widescreen);
-
     background-color: #fff;
-
     scroll-snap-align: center;
   }
 
@@ -69,6 +64,19 @@ import pcs from "../assets/pcs.jpg";
 
 <script>
   const images = document.querySelector(".list");
+  const image_el = document.querySelector(".content");
+  let image_width = 0;
+
+  function set_image_width() {
+    if (image_el != null) {
+      image_width = image_el.clientWidth;
+      console.log(image_width);
+    }
+  }
+
+  set_image_width();
+  window.onresize = set_image_width;
+
   let image_number = 0;
   setInterval(() => {
     if (image_number < 2) {
@@ -76,6 +84,9 @@ import pcs from "../assets/pcs.jpg";
     } else {
       image_number = 0;
     }
-    images?.scroll({ left: image_number * 700, behavior: "smooth" });
+    images?.scroll({
+      left: image_number * image_width,
+      behavior: "smooth",
+    });
   }, 5000);
 </script>

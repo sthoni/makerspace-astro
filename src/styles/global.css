@@ -146,13 +146,11 @@ body {
   margin: 0;
   font-size: var(--font-size-fluid-1);
   background: var(--surface-1);
-  background-image: repeating-linear-gradient(
-    45deg,
-    transparent,
-    transparent 40px,
-    var(--brand) 40px,
-    var(--brand) 41px
-  );
+  background-image: repeating-linear-gradient(45deg,
+      transparent,
+      transparent 40px,
+      var(--brand) 40px,
+      var(--brand) 41px);
 }
 
 img {
@@ -162,7 +160,7 @@ img {
 
 .button {
   display: block;
-  background-color: var(--green-1);
+  background-color: var(--brand);
   padding-block: 1rem;
   padding-inline: 2rem;
   border: var(--border-size-1) solid var(--brand);
@@ -172,25 +170,14 @@ img {
     color 0.1s ease-in;
   /* Animationsart z.B ease in*/
   font-family: var(--font-p);
-  color: var(--text-1);
+  color: var(--text-3);
 
   &:hover {
-    background-color: var(--green-4);
+    background-color: var(--green-1);
     color: var(--text-1);
   }
 }
 
-.bg-accent {
-  background-color: var(--brand) !important;
-  color: var(--text-3);
-}
-
-.button.bg-accent {
-  &:hover {
-    background-color: var(--green-4) !important;
-    color: var(--text-1) !important;
-  }
-}
 
 .flex {
   display: flex !important;
@@ -198,7 +185,7 @@ img {
 
 a {
   font-family: var(--font-p);
-  color: var(--accent);
+  color: inherit;
 
   &:hover {
     color: var(--green-12);

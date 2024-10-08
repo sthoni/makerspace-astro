@@ -6,19 +6,21 @@ import Card from "../components/Card.astro";
 
 <BaseLayout>
   <main>
-    <Slideshow />
-    <Card>
-      <p>
-        Willkommen beim Makerspace am Steinbart-Gymnasium! Unser Ziel ist es,
-        eine kreative Umgebung für Schülerinnen und Schüler zu schaffen, in der
-        sie ihre technischen Fähigkeiten entwickeln und Projekte entwickeln
-        können.
-      </p>
-      <div class="button-card">
-        <a class="button bg-accent" href="/Neuigkeiten">Neuigkeiten</a>
-        <a class="button" href="/ueberuns">Über uns</a>
+    <section class="hero">
+      <Slideshow />
+      <div>
+        <p>
+          Willkommen beim Makerspace am Steinbart-Gymnasium! Unser Ziel ist es,
+          eine kreative Umgebung für Schülerinnen und Schüler zu schaffen, in
+          der sie ihre technischen Fähigkeiten entwickeln und Projekte
+          entwickeln können.
+        </p>
+        <div class="button-card">
+          <a class="button" href="/Neuigkeiten">Neuigkeiten</a>
+          <a class="button" href="/ueberuns">Über uns</a>
+        </div>
       </div>
-    </Card>
+    </section>
     <Card
       imagePath="/src/assets/3dprinter.jpg"
       altText="Bild eines 3D-Druckers"
@@ -67,6 +69,27 @@ import Card from "../components/Card.astro";
 </BaseLayout>
 
 <style>
+  .hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-block: 2em;
+    margin-inline: auto;
+    max-width: var(--max-text-width);
+    box-shadow: var(--shadow-1);
+    border-radius: var(--radius-conditional-2);
+    border: var(--border-size-1) solid var(--brand);
+    background-color: var(--surface-1);
+  }
+
+  .hero > div {
+    padding: 2rem;
+  }
+
+  .hero > div * {
+    margin-top: 1rem;
+  }
+
   article > p {
     padding-inline: 0;
   }
