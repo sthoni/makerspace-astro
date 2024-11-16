@@ -3,70 +3,62 @@ import { Image } from "astro:assets";
 import loetkolben from "../assets/loetkolben.jpg";
 import printer from "../assets/3dprinter.jpg";
 import pcs from "../assets/pcs.jpg";
+
+import type { CollectionEntry } from "astro:content";
+import BlogCard from "./BlogCard.astro";
+
+interface Props {
+  posts?: [CollectionEntry<"blog">];
+}
+
+const { posts } = Astro.props;
 ---
 
 <ul class="list">
-  <li class="item">
-    <div class="content">
-      <a href="/blog/joule-thief">
-        <Image
-          loading="eager"
-          src={loetkolben}
-          alt="Bild einer Lötkolbenstation"
-        />
-      </a>
-    </div>
-  </li>
-  <li class="item">
-    <div class="content">
-      <Image loading="eager" src={printer} alt="Bild eines 3D-Druckers" />
-    </div>
-  </li>
-  <li class="item">
-    <div class="content">
-      <Image loading="eager" src={pcs} alt="Bild von Computern" />
-    </div>
-  </li>
+  {
+    posts.map((post) => (
+      <li class="item">
+        <BlogCard post={post} />
+      </li>
+    ))
+  }
 </ul>
 
 <style>
-  img {
-    height: 100%;
-    width: var(--max-text-width);
-    object-fit: cover;
-  }
-
   .list {
     display: flex;
     gap: 1rem;
     background-color: var(--surface-1);
-    width: var(--max-text-width);
-    margin-inline: auto;
-    padding-inline: 0;
-    max-width: 100%;
     list-style: none;
     overflow-x: scroll;
     scroll-snap-type: x mandatory;
+    max-width: calc(var(--max-text-width) + 20rem);
+    margin: 0 auto;
+    border: var(--brand) solid 8px;
   }
 
   .item {
     flex-shrink: 0;
-    inline-size: calc(var(--max-text-width) - 5rem);
-    max-block-size: var(--max-text-width);
-    aspect-ratio: var(--ratio-widescreen);
+    max-width: 100%;
     background-color: #fff;
     scroll-snap-align: center;
   }
 
-  .content {
-    display: flex;
-    height: 100%;
+  .item img {
+    max-width: 100%;
+  }
+
+  @media screen and (max-width: 768px) {
+    .list {
+      border: 0;
+    }
   }
 </style>
 
 <script>
-  const images = document.querySelector(".list");
-  const image_el = document.querySelector(".content");
+  const list = document.querySelector(".list");
+  const posts = document.querySelectorAll(".item");
+  const image_el = posts[0];
   let image_width = 0;
 
   function set_image_width() {
@@ -81,12 +73,12 @@ import pcs from "../assets/pcs.jpg";
 
   let image_number = 0;
   setInterval(() => {
-    if (image_number < 2) {
+    if (image_number < posts.length) {
       image_number += 1;
     } else {
       image_number = 0;
     }
-    images?.scroll({
+    list?.scroll({
       left: image_number * image_width,
       behavior: "smooth",
     });

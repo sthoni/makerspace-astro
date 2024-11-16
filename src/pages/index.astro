@@ -4,35 +4,24 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Card from "../components/Card.astro";
 
 import { getCollection } from "astro:content";
-import BlogLayout from "../layouts/BlogLayout.astro";
-import { Image } from "astro:assets";
-// 1. Generate a new path for every collection entry
-export async function getStaticPaths() {
-  const blogEntries = await getCollection("blog");
-  return blogEntries.map((entry) => ({
-    params: { slug: entry.slug },
-    props: { entry },
-  }));
-}
-// 2. For your template, you can get the entry directly from the prop
-const { entry } = Astro.props;
+
+const allBlogPosts = await getCollection("blog");
 ---
 
 <BaseLayout>
   <main>
-    <section class="hero">
-      <Slideshow />
-      <div>
-        <p>
-          Willkommen beim Makerspace am Steinbart-Gymnasium! Unser Ziel ist es,
-          eine kreative Umgebung für Schülerinnen und Schüler zu schaffen, in
-          der sie ihre technischen Fähigkeiten entwickeln und Projekte
-          entwickeln können.
-        </p>
-        <div class="button-card">
-          <a class="button" href="/Neuigkeiten">Neuigkeiten</a>
-          <a class="button" href="/ueberuns">Über uns</a>
-        </div>
+    <Slideshow posts={allBlogPosts} />
+    <section class="hero stack">
+      <h2>Der MakerSpace am Steinbart</h2>
+      <p>Willkommen beim MakerSpace am Steinbart-Gymnasium!</p>
+      <p>
+        Unser Ziel ist es, eine kreative Umgebung für Schülerinnen und Schüler
+        zu schaffen, in der sie ihre technischen Fähigkeiten entwickeln und
+        Projekte entwickeln können.
+      </p>
+      <div class="button-card">
+        <a class="button" href="/Neuigkeiten">Neuigkeiten</a>
+        <a class="button" href="/ueberuns">Über uns</a>
       </div>
     </section>
     <Card
@@ -83,23 +72,20 @@ const { entry } = Astro.props;
 </BaseLayout>
 
 <style>
+  main {
+    margin-block: var(--padding);
+  }
+
   .hero {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-block: 2em;
+    margin-block: var(--padding);
     margin-inline: auto;
     max-width: var(--max-text-width);
     box-shadow: var(--shadow-2);
     background-color: var(--surface-1);
-  }
-
-  .hero > div {
-    padding: 2rem;
-  }
-
-  .hero > div * {
-    margin-top: 1rem;
+    padding: var(--padding);
   }
 
   article > p {

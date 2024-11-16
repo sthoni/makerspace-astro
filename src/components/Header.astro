@@ -7,8 +7,10 @@ const title = "MakerSpace";
 
 <header>
   <div>
-    <a href="/"><Image loading="eager" src={logo} alt="Steinbart-Logo" /></a>
-    <h1>{title}</h1>
+    <a href="/">
+      <Image loading="eager" src={logo} alt="Steinbart-Logo" />
+      <h1>{title}</h1>
+    </a>
   </div>
   <nav>
     <a class="animation" href="/">Home</a>
@@ -27,8 +29,9 @@ const title = "MakerSpace";
     background-color: var(--surface-1);
     box-shadow: var(--shadow-2);
     padding: var(--padding);
+    padding-bottom: calc(var(--padding) - 8px);
     gap: 0;
-    border-bottom: 10px solid var(--brand);
+    border-bottom: 8px solid var(--brand);
 
     img {
       height: calc(var(--font-size-fluid-2) + 0.2rem);
@@ -36,9 +39,10 @@ const title = "MakerSpace";
     }
   }
 
-  header > div {
+  header > div > * {
     display: flex;
     gap: 1rem;
+    text-decoration: none;
   }
 
   /* Navigation */

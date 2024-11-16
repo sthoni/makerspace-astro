@@ -12,40 +12,65 @@ const { post } = Astro.props;
 <article>
   <a href=`/blog/${post.slug}`>
     <Image src={post.data.cover} alt={post.data.coverAlt} />
-    <h2>{post.data.title}</h2>
-    <p>
-      {post.data.tags.map((tag) => ` #${tag}`)}
-    </p>
+    <div class="stack">
+      <h3>{post.data.title}</h3>
+      <p>
+        {post.data.tags.map((tag) => ` #${tag}`)}
+      </p>
+    </div>
   </a>
 </article>
 
 <style>
   article {
     position: relative;
-    background-color: var(--brand);
     max-width: var(--max-text-width);
     box-shadow: var(--shadow-2);
   }
 
   img {
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 21 / 9;
     object-fit: cover;
     width: 100%;
     height: auto;
+    filter: saturate(0.3) blur(2px);
+    transition: filter 300ms;
   }
 
-  h2 {
+  a:hover {
+    img {
+      filter: saturate(1) blur(0px);
+    }
+    div {
+      background-color: var(--surface-1);
+      color: var(--brand);
+    }
+  }
+
+  div {
     position: absolute;
     top: 0;
+    margin: var(--padding);
     padding: var(--padding);
     color: var(--text-3);
     background-color: var(--brand);
+    max-width: 40ch;
+    box-shadow: var(--shadow-1);
+  }
+
+  h3 {
+    text-decoration: underline;
+    transition: all 300ms;
   }
 
   p {
-    position: absolute;
-    padding: var(--padding);
-    bottom: 0;
-    right: 0;
+    text-align: right;
+  }
+
+  @media screen and (max-width: 768px) {
+    div {
+      margin: 0;
+      position: relative;
+    }
   }
 </style>
