@@ -1,0 +1,51 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  post: CollectionEntry<"blog">;
+}
+
+const { post } = Astro.props;
+---
+
+<article>
+  <a href=`/blog/${post.slug}`>
+    <Image src={post.data.cover} alt={post.data.coverAlt} />
+    <h2>{post.data.title}</h2>
+    <p>
+      {post.data.tags.map((tag) => ` #${tag}`)}
+    </p>
+  </a>
+</article>
+
+<style>
+  article {
+    position: relative;
+    background-color: var(--brand);
+    max-width: var(--max-text-width);
+    box-shadow: var(--shadow-2);
+  }
+
+  img {
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    width: 100%;
+    height: auto;
+  }
+
+  h2 {
+    position: absolute;
+    top: 0;
+    padding: var(--padding);
+    color: var(--text-3);
+    background-color: var(--brand);
+  }
+
+  p {
+    position: absolute;
+    padding: var(--padding);
+    bottom: 0;
+    right: 0;
+  }
+</style>

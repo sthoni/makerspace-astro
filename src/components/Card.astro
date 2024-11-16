@@ -20,9 +20,7 @@ if (imagePath) {
 }
 ---
 
-<section>
-  {headingText && <h2>{headingText}</h2>}
-
+<article>
   {
     imagePath && altText ? (
       <Image loading="eager" src={images[imagePath]()} alt={altText} />
@@ -30,24 +28,23 @@ if (imagePath) {
       ""
     )
   }
-  <p class="textInfo">
+  <div class="stack">
+    {headingText && <h2>{headingText}</h2>}
     <slot />
-  </p>
-</section>
+  </div>
+</article>
 
 <style>
-  section {
+  article {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 2rem;
+    gap: 3rem;
     margin-block: 4rem;
     margin-inline: auto;
     padding: 2rem;
     max-width: var(--max-text-width);
-    box-shadow: var(--shadow-1);
-    border-radius: var(--radius-conditional-2);
-    border: var(--border-size-1) solid var(--brand);
+    box-shadow: var(--shadow-2);
   }
 
   img {
@@ -55,7 +52,7 @@ if (imagePath) {
     object-fit: cover;
   }
 
-  section:nth-child(2n + 1) {
+  article:nth-child(2n + 1) {
     background-color: var(--brand);
     p {
       color: var(--text-3);
@@ -65,7 +62,7 @@ if (imagePath) {
     }
   }
 
-  section:nth-child(2n) {
+  article:nth-child(2n) {
     background-color: var(--surface-1);
     p {
       color: var(--text-1);
