@@ -39,7 +39,7 @@
 
   --gap: var(--size-7);
 
-  --font-h1: "CyberFont", sans-serif;
+  --font-h1: var(--font-geometric-humanist);
   --font-p: var(--font-geometric-humanist);
   --line-height: var(--font-lineheight-3);
   --padding: var(--size-5);
