@@ -23,7 +23,13 @@ if (imagePath) {
 <article>
   {
     imagePath && altText ? (
-      <Image loading="eager" src={images[imagePath]()} alt={altText} />
+      <Image
+        loading="lazy"
+        decoding="async"
+        width="400"
+        src={images[imagePath]()}
+        alt={altText}
+      />
     ) : (
       ""
     )
