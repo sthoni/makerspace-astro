@@ -11,7 +11,12 @@ const { post } = Astro.props;
 
 <article>
   <a href=`/blog/${post.slug}`>
-    <Image src={post.data.cover} alt={post.data.coverAlt} loading="eager" />
+    <Image
+      src={post.data.cover}
+      alt={post.data.coverAlt}
+      loading="eager"
+      width="800"
+    />
     <div class="stack">
       <h3>{post.data.title}</h3>
       <p>
