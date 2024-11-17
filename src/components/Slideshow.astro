@@ -1,17 +1,14 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import BlogCard from "./BlogCard.astro";
+import { getCollection } from "astro:content";
 
-interface Props {
-  posts?: [CollectionEntry<"blog">];
-}
-
-const { posts } = Astro.props;
+const blogEntries = await getCollection("blog");
 ---
 
 <ul class="list">
   {
-    posts.map((post) => (
+    blogEntries.map((post) => (
       <li class="item">
         <BlogCard post={post} />
       </li>

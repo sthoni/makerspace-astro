@@ -2,16 +2,11 @@
 import Slideshow from "../components/Slideshow.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Card from "../components/Card.astro";
-
-import { getCollection } from "astro:content";
-
-const allBlogPosts = await getCollection("blog");
-const slideshowPosts = [allBlogPosts[0], allBlogPosts[1], allBlogPosts[2]];
 ---
 
 <BaseLayout>
   <main>
-    <Slideshow posts={slideshowPosts} />
+    <Slideshow />
     <section class="hero stack">
       <h2>Der MakerSpace am Steinbart</h2>
       <p>Willkommen beim MakerSpace am Steinbart-Gymnasium!</p>
