@@ -25,7 +25,6 @@ const { post } = Astro.props;
   article {
     position: relative;
     max-width: var(--max-text-width);
-    box-shadow: var(--shadow-2);
   }
 
   img {
@@ -33,13 +32,13 @@ const { post } = Astro.props;
     object-fit: cover;
     width: 100%;
     height: auto;
-    filter: saturate(0.3) blur(2px);
+    filter: saturate(0.3);
     transition: filter 300ms;
   }
 
   a:hover {
     img {
-      filter: saturate(1) blur(0px);
+      filter: saturate(1);
     }
     div {
       background-color: var(--surface-1);

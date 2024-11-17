@@ -19,7 +19,10 @@ const { Content } = await entry.render();
   <main>
     <Image src={entry.data.cover} alt={entry.data.coverAlt} />
     <article class="stack">
-      <h2>{entry.data.title}</h2>
+      <div>
+        <h2>{entry.data.title}</h2>
+        <p class="date">{entry.data.date.toLocaleDateString()}</p>
+      </div>
       <Content />
     </article>
   </main>
@@ -40,5 +43,10 @@ const { Content } = await entry.render();
     width: 100%;
     height: auto;
     margin-block-end: 4rem;
+  }
+
+  .date {
+    color: var(--text-2);
+    text-align: right;
   }
 </style>

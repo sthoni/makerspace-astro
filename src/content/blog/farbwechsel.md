@@ -1,5 +1,6 @@
 ---
 title: "Bunte Postkarten: Farbwechsel-LED selbst löten"
+date: 2024-01-15T09:00:00-07:00
 tags: ["projekt", "ros", "heu"]
 cover: "./stg-elektronik-ag.jpeg"
 coverAlt: "Zwei Postkarten mit LEDs."

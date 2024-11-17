@@ -1,5 +1,6 @@
 ---
 title: "STG-Schlüsselanhänger mit dem 3D-Drucker"
+date: 2024-01-17T09:00:00-07:00
 tags: ["projekt", "ros"]
 cover: "./3d-druck.jpg"
 coverAlt: "Eine Menge an STG-Schlüsselanhängern."

@@ -1,5 +1,6 @@
 ---
 title: "Noch den letzten Rest herausholen: Joule-Thief"
+date: 2024-01-16T09:00:00-07:00
 tags: ["projekt", "ros"]
 cover: "./joule-thief.jpg"
 coverAlt: "Alle Materialien zum Bau eines Joule Thief und das Ergebnis"
